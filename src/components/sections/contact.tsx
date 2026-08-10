@@ -18,14 +18,14 @@ const contactMethods = [
   },
   {
     label: "LinkedIn",
-    value: site.linkedin,
+    value: "linkedin.com/in/lakshith-lokesh-927b47343",
     href: site.linkedin,
     icon: Link2,
     external: true,
   },
   {
     label: "GitHub",
-    value: site.github,
+    value: "github.com/lakshithlokesh06",
     href: site.github,
     icon: GitBranch,
     external: true,
@@ -120,13 +120,13 @@ export function Contact() {
                   target={external ? "_blank" : undefined}
                   rel={external ? "noopener noreferrer" : undefined}
                   aria-label={label === "Email" ? `Email ${site.name}` : `Open ${label} profile`}
-                  className="group flex items-center justify-between gap-4 rounded-md border border-[var(--color-border)] px-4 py-3 text-sm transition-colors hover:border-[var(--color-border-strong)] hover:bg-[var(--color-surface)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-background)]"
+                  className="group flex min-w-0 flex-col items-start gap-2 rounded-md border border-[var(--color-border)] px-4 py-3 text-sm transition-colors hover:border-[var(--color-border-strong)] hover:bg-[var(--color-surface)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-background)] sm:flex-row sm:items-center sm:justify-between sm:gap-4"
                 >
                   <span className="flex shrink-0 items-center gap-3 text-[var(--color-foreground)]">
                     <Icon aria-hidden="true" size={17} strokeWidth={1.8} />
                     {label}
                   </span>
-                  <span className="min-w-0 max-w-[12rem] truncate text-[var(--color-muted)]">{value}</span>
+                  <span className="min-w-0 max-w-full break-words text-[var(--color-muted)] [overflow-wrap:anywhere] sm:max-w-[12rem] sm:truncate">{value}</span>
                 </a>
               ))}
             </div>
