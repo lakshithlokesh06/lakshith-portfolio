@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
+import { BackToTop } from "@/components/ui/back-to-top";
 
 type SiteShellProps = {
   children: ReactNode;
@@ -13,6 +14,7 @@ export function SiteShell({ children }: SiteShellProps) {
       <Navbar />
       <div className="flex flex-1 flex-col">{children}</div>
       <Footer />
+      <BackToTop />
     </div>
   );
 }

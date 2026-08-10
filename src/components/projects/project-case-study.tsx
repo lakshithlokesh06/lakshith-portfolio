@@ -6,6 +6,8 @@ import type { ReactNode } from "react";
 import { PageContainer } from "@/components/ui/page-container";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/reveal";
 import { ProjectLinks } from "@/components/projects/project-links";
+import { ProjectToc } from "@/components/projects/project-toc";
+import type { ProjectTocItem } from "@/components/projects/project-toc";
 import { ProjectVisual } from "@/components/projects/project-visual";
 import type { Project } from "@/types/project";
 
@@ -14,16 +16,19 @@ type ProjectCaseStudyProps = {
 };
 
 function DetailBlock({
+  id,
   title,
   children,
 }: {
+  id: string;
   title: string;
   children: ReactNode;
 }) {
   return (
     <Reveal
       as="section"
-      className="border-t border-[var(--color-border)] py-11 sm:py-12"
+      id={id}
+      className="scroll-mt-24 border-t border-[var(--color-border)] py-11 sm:py-12"
     >
       <div className="grid gap-5 lg:grid-cols-[13rem_1fr] xl:grid-cols-[14rem_1fr]">
         <h2 className="text-sm font-medium uppercase tracking-[0.22em] text-[var(--color-subtle)]">
@@ -86,7 +91,7 @@ function ScreenshotGallery({ project }: { project: Project }) {
   }
 
   return (
-    <DetailBlock title="Interface Preview">
+    <DetailBlock id="preview" title="Interface Preview">
       <div className="grid gap-4 md:grid-cols-2">
         {screenshots.map((src, index) => {
           const isPrimary = index === 0;
@@ -133,6 +138,21 @@ function ScreenshotGallery({ project }: { project: Project }) {
 }
 
 export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
+  const tocItems: ProjectTocItem[] = [
+    { id: "overview", label: "Overview" },
+    ...(project.problem ? [{ id: "problem", label: "Problem" }] : []),
+    ...(project.solution ? [{ id: "solution", label: "Solution" }] : []),
+    { id: "features", label: "Features" },
+    { id: "architecture", label: "Architecture" },
+    ...(project.screenshots?.filter(Boolean).length
+      ? [{ id: "preview", label: "Preview" }]
+      : []),
+    ...(project.challenges?.length || project.learnings?.length
+      ? [{ id: "challenges", label: "Challenges & Learnings" }]
+      : []),
+    { id: "project-links", label: "Project Links" },
+  ];
+
   return (
     <main>
       <PageContainer className="py-10 sm:py-14 lg:py-16">
@@ -191,95 +211,99 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
           </RevealItem>
         </RevealGroup>
 
-        <div className="mt-12">
-          <ScreenshotGallery project={project} />
+        <div className="mt-12 grid gap-10 lg:grid-cols-[11.5rem_minmax(0,1fr)] lg:items-start xl:grid-cols-[12rem_minmax(0,1fr)]">
+          <ProjectToc items={tocItems} />
 
-          <DetailBlock title="Overview">
-            <p>{project.overview}</p>
-          </DetailBlock>
+          <div className="min-w-0">
+            <ScreenshotGallery project={project} />
 
-          {project.problem ? (
-            <DetailBlock title="The Problem">
-              <p>{project.problem}</p>
+            <DetailBlock id="overview" title="Overview">
+              <p>{project.overview}</p>
             </DetailBlock>
-          ) : null}
 
-          {project.solution ? (
-            <DetailBlock title="The Solution">
-              <p>{project.solution}</p>
+            {project.problem ? (
+              <DetailBlock id="problem" title="The Problem">
+                <p>{project.problem}</p>
+              </DetailBlock>
+            ) : null}
+
+            {project.solution ? (
+              <DetailBlock id="solution" title="The Solution">
+                <p>{project.solution}</p>
+              </DetailBlock>
+            ) : null}
+
+            <DetailBlock id="features" title="Key Features">
+              <BulletList items={project.features} />
             </DetailBlock>
-          ) : null}
 
-          <DetailBlock title="Key Features">
-            <BulletList items={project.features} />
-          </DetailBlock>
+            <DetailBlock id="architecture" title="Technology / Architecture">
+              <div className="grid gap-8 lg:grid-cols-[1fr_0.82fr]">
+                <ul
+                  className="flex flex-wrap gap-2"
+                  aria-label="Full technology stack"
+                >
+                  {project.techStack.map((tech) => (
+                    <li key={tech}>
+                      <span className="inline-flex min-h-8 items-center rounded-md border border-[var(--color-border)] bg-[rgba(8,9,11,0.28)] px-2.5 py-1 text-xs font-medium text-[var(--color-muted)]">
+                        {tech}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
 
-          <DetailBlock title="Technology / Architecture">
-            <div className="grid gap-8 lg:grid-cols-[1fr_0.82fr]">
-              <ul
-                className="flex flex-wrap gap-2"
-                aria-label="Full technology stack"
-              >
-                {project.techStack.map((tech) => (
-                  <li key={tech}>
-                    <span className="inline-flex min-h-8 items-center rounded-md border border-[var(--color-border)] bg-[rgba(8,9,11,0.28)] px-2.5 py-1 text-xs font-medium text-[var(--color-muted)]">
-                      {tech}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-
-              {project.architecture ? (
-                <ArchitectureVisual steps={project.architecture} />
-              ) : null}
-            </div>
-          </DetailBlock>
-
-          {project.challenges?.length || project.learnings?.length ? (
-            <DetailBlock title="Challenges & Learnings">
-              <div className="grid gap-6 md:grid-cols-2">
-                {project.challenges?.length ? (
-                  <div>
-                    <h3 className="text-base font-semibold tracking-tight text-[var(--color-foreground)]">
-                      Challenges
-                    </h3>
-                    <ul className="mt-4 space-y-3">
-                      {project.challenges.map((challenge) => (
-                        <li
-                          key={challenge}
-                          className="text-sm leading-6 text-[var(--color-muted)]"
-                        >
-                          {challenge}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ) : null}
-
-                {project.learnings?.length ? (
-                  <div>
-                    <h3 className="text-base font-semibold tracking-tight text-[var(--color-foreground)]">
-                      Learnings
-                    </h3>
-                    <ul className="mt-4 space-y-3">
-                      {project.learnings.map((learning) => (
-                        <li
-                          key={learning}
-                          className="text-sm leading-6 text-[var(--color-muted)]"
-                        >
-                          {learning}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                {project.architecture ? (
+                  <ArchitectureVisual steps={project.architecture} />
                 ) : null}
               </div>
             </DetailBlock>
-          ) : null}
 
-          <DetailBlock title="Project Links">
-            <ProjectLinks project={project} />
-          </DetailBlock>
+            {project.challenges?.length || project.learnings?.length ? (
+              <DetailBlock id="challenges" title="Challenges & Learnings">
+                <div className="grid gap-6 md:grid-cols-2">
+                  {project.challenges?.length ? (
+                    <div>
+                      <h3 className="text-base font-semibold tracking-tight text-[var(--color-foreground)]">
+                        Challenges
+                      </h3>
+                      <ul className="mt-4 space-y-3">
+                        {project.challenges.map((challenge) => (
+                          <li
+                            key={challenge}
+                            className="text-sm leading-6 text-[var(--color-muted)]"
+                          >
+                            {challenge}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
+
+                  {project.learnings?.length ? (
+                    <div>
+                      <h3 className="text-base font-semibold tracking-tight text-[var(--color-foreground)]">
+                        Learnings
+                      </h3>
+                      <ul className="mt-4 space-y-3">
+                        {project.learnings.map((learning) => (
+                          <li
+                            key={learning}
+                            className="text-sm leading-6 text-[var(--color-muted)]"
+                          >
+                            {learning}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
+                </div>
+              </DetailBlock>
+            ) : null}
+
+            <DetailBlock id="project-links" title="Project Links">
+              <ProjectLinks project={project} />
+            </DetailBlock>
+          </div>
         </div>
       </PageContainer>
     </main>

@@ -3,7 +3,8 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { FileText, GitBranch, Link2, Menu, X } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useMemo, useState } from "react";
 
 import { navigationItems, site } from "@/data/site";
 import { PageContainer } from "@/components/ui/page-container";
@@ -14,8 +15,15 @@ const socialLinks = [
 ];
 
 export function Navbar() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+  const sectionIds = useMemo(
+    () => navigationItems.map((item) => item.href.replace("/#", "")),
+    [],
+  );
+  const isHomePage = pathname === "/";
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 8);
@@ -25,6 +33,43 @@ export function Navbar() {
 
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    if (!isHomePage) {
+      return;
+    }
+
+    const visibleSections = new Map<string, number>();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            visibleSections.set(entry.target.id, entry.intersectionRatio);
+          } else {
+            visibleSections.delete(entry.target.id);
+          }
+        });
+
+        const nextActive = Array.from(visibleSections.entries()).sort(
+          (a, b) => b[1] - a[1],
+        )[0]?.[0];
+
+        setActiveSection(nextActive ?? "");
+      },
+      {
+        rootMargin: "-5rem 0px -58% 0px",
+        threshold: [0.08, 0.18, 0.32, 0.5],
+      },
+    );
+
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((section): section is HTMLElement => Boolean(section));
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, [isHomePage, sectionIds]);
 
   useEffect(() => {
     if (!isOpen) {
@@ -53,7 +98,10 @@ export function Navbar() {
       }`}
     >
       <PageContainer>
-        <nav className="flex h-16 items-center justify-between" aria-label="Primary navigation">
+        <nav
+          className="flex h-16 items-center justify-between"
+          aria-label="Primary navigation"
+        >
           <Link
             href="/"
             className="text-sm font-semibold tracking-tight text-[var(--color-foreground)] transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-background)]"
@@ -64,15 +112,25 @@ export function Navbar() {
 
           <div className="hidden items-center gap-8 lg:flex">
             <div className="flex items-center gap-6">
-              {navigationItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="text-sm text-[var(--color-muted)] transition-colors hover:text-[var(--color-foreground)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-background)]"
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {navigationItems.map((item) => {
+                const sectionId = item.href.replace("/#", "");
+                const isActive = isHomePage && activeSection === sectionId;
+
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    aria-current={isActive ? "location" : undefined}
+                    className={`relative text-sm transition-colors after:absolute after:-bottom-2 after:left-0 after:h-px after:w-full after:origin-left after:rounded-full after:bg-[var(--color-accent)] after:transition-transform ${
+                      isActive
+                        ? "text-[var(--color-foreground)] after:scale-x-100"
+                        : "text-[var(--color-muted)] after:scale-x-0 hover:text-[var(--color-foreground)]"
+                    } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-background)]`}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
             </div>
 
             <div className="flex items-center gap-2">
@@ -107,12 +165,18 @@ export function Navbar() {
           <button
             type="button"
             className="inline-flex size-10 items-center justify-center rounded-md border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-foreground)] transition-colors hover:bg-[var(--color-surface-elevated)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-background)] lg:hidden"
-            aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-label={
+              isOpen ? "Close navigation menu" : "Open navigation menu"
+            }
             aria-expanded={isOpen}
             aria-controls="mobile-navigation"
             onClick={() => setIsOpen((value) => !value)}
           >
-            {isOpen ? <X aria-hidden="true" size={19} /> : <Menu aria-hidden="true" size={19} />}
+            {isOpen ? (
+              <X aria-hidden="true" size={19} />
+            ) : (
+              <Menu aria-hidden="true" size={19} />
+            )}
           </button>
         </nav>
       </PageContainer>
@@ -129,16 +193,26 @@ export function Navbar() {
           >
             <PageContainer className="py-5">
               <div className="flex flex-col gap-1">
-                {navigationItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="rounded-md px-3 py-3 text-sm font-medium text-[var(--color-muted)] transition-colors hover:bg-[var(--color-surface)] hover:text-[var(--color-foreground)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus)]"
-                    onClick={closeMenu}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
+                {navigationItems.map((item) => {
+                  const sectionId = item.href.replace("/#", "");
+                  const isActive = isHomePage && activeSection === sectionId;
+
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      aria-current={isActive ? "location" : undefined}
+                      className={`rounded-md border-l px-3 py-3 text-sm font-medium transition-colors ${
+                        isActive
+                          ? "border-[var(--color-accent)] text-[var(--color-foreground)]"
+                          : "border-transparent text-[var(--color-muted)] hover:bg-[var(--color-surface)] hover:text-[var(--color-foreground)]"
+                      } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus)]`}
+                      onClick={closeMenu}
+                    >
+                      {item.label}
+                    </Link>
+                  );
+                })}
               </div>
 
               <div className="mt-5 flex items-center gap-2 border-t border-[var(--color-border)] pt-5">
