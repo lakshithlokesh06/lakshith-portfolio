@@ -110,7 +110,7 @@ export function Projects() {
         variants={shouldReduceMotion ? undefined : sectionVariants}
         initial={shouldReduceMotion ? false : "hidden"}
         whileInView={shouldReduceMotion ? undefined : "visible"}
-        viewport={{ once: true, amount: 0.16 }}
+        viewport={{ once: true, amount: "some" }}
       >
         <motion.div variants={shouldReduceMotion ? undefined : cardVariants}>
           <SectionHeading
