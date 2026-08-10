@@ -238,9 +238,9 @@ export const projects: Project[] = [
     githubUrl:
       "https://github.com/lakshithlokesh06/career-recommendation-system",
     liveUrl: "https://ai-career-recommendation-system.streamlit.app/",
-    image: "/projects/Screenshot 2026-08-07 at 7.22.51 PM.png",
+    image: "/projects/career-recommendation-system.png",
     imageAlt: "Career Recommendation System web application interface",
-    screenshots: ["/projects/Screenshot 2026-08-07 at 7.22.51 PM.png"],
+    screenshots: ["/projects/career-recommendation-system.png"],
     screenshotAlts: ["Career Recommendation System web application interface"],
     screenshotCaptions: ["Career recommendation interface"],
     status: "Completed",
