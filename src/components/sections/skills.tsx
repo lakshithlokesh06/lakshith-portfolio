@@ -31,6 +31,15 @@ const coreSkills = new Set([
   "PostgreSQL",
   "Apache Spark",
   "PySpark",
+  "LangChain",
+  "LangGraph",
+  "OpenAI API",
+  "Groq",
+  "Git",
+  "GitHub",
+  "VS Code",
+  "Jupyter Notebook",
+  "Streamlit Community Cloud",
 ]);
 
 const skillCategories: SkillCategory[] = [
