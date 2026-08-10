@@ -126,7 +126,7 @@ export function Contact() {
                     <Icon aria-hidden="true" size={17} strokeWidth={1.8} />
                     {label}
                   </span>
-                  <span className="min-w-0 max-w-full break-words text-[var(--color-muted)] [overflow-wrap:anywhere] sm:max-w-[12rem] sm:truncate">{value}</span>
+                  <span className="min-w-0 max-w-full break-words text-[var(--color-muted)] [overflow-wrap:anywhere] sm:flex-1 sm:text-right">{value}</span>
                 </a>
               ))}
             </div>
