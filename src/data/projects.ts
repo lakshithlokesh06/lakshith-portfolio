@@ -134,7 +134,11 @@ export const projects: Project[] = [
     githubUrl:
       "https://github.com/lakshithlokesh06/AutoInsight-Intelligent-Dataset-Analyzer",
     liveUrl: "https://autoinsight-analytics.streamlit.app/",
-    screenshots: [],
+    image: "/projects/autoinsight-dashboard.png",
+    imageAlt: "AutoInsight intelligent dataset analyzer dashboard",
+    screenshots: ["/projects/autoinsight-dashboard.png"],
+    screenshotAlts: ["AutoInsight intelligent dataset analyzer dashboard"],
+    screenshotCaptions: ["Dataset analyzer dashboard"],
     status: "Featured",
   },
   {
@@ -234,7 +238,11 @@ export const projects: Project[] = [
     githubUrl:
       "https://github.com/lakshithlokesh06/career-recommendation-system",
     liveUrl: "https://ai-career-recommendation-system.streamlit.app/",
-    screenshots: [],
+    image: "/projects/Screenshot 2026-08-07 at 7.22.51 PM.png",
+    imageAlt: "Career Recommendation System web application interface",
+    screenshots: ["/projects/Screenshot 2026-08-07 at 7.22.51 PM.png"],
+    screenshotAlts: ["Career Recommendation System web application interface"],
+    screenshotCaptions: ["Career recommendation interface"],
     status: "Completed",
   },
   {
@@ -276,7 +284,11 @@ export const projects: Project[] = [
     githubUrl:
       "https://github.com/lakshithlokesh06/ecommerce-analytics-dashboard",
     liveUrl: "https://commerce-data-insights.streamlit.app/",
-    screenshots: [],
+    image: "/projects/Commerce Data Insights Dashboard.png",
+    imageAlt: "Commerce Data Insights Dashboard analytics interface",
+    screenshots: ["/projects/Commerce Data Insights Dashboard.png"],
+    screenshotAlts: ["Commerce Data Insights Dashboard analytics interface"],
+    screenshotCaptions: ["Commerce analytics interface"],
     status: "Completed",
   },
   {
