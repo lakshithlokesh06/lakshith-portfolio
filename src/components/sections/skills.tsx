@@ -1,7 +1,5 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import type { Variants } from "framer-motion";
 import {
   Bot,
   BrainCircuit,
@@ -12,6 +10,7 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
+import { RevealGroup, RevealItem } from "@/components/ui/reveal";
 import { Section, SectionHeading } from "@/components/ui/section";
 
 type SkillCategory = {
@@ -118,49 +117,23 @@ const skillCategories: SkillCategory[] = [
   },
 ];
 
-const sectionVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.08,
-    },
-  },
-};
-
-const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 16 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.4, ease: "easeOut" },
-  },
-};
-
 export function Skills() {
-  const shouldReduceMotion = useReducedMotion();
-
   return (
     <Section id="skills" className="pt-0">
-      <motion.div
-        variants={shouldReduceMotion ? undefined : sectionVariants}
-        initial={shouldReduceMotion ? false : "hidden"}
-        whileInView={shouldReduceMotion ? undefined : "visible"}
-        viewport={{ once: true, amount: 0.2 }}
-      >
-        <motion.div variants={shouldReduceMotion ? undefined : cardVariants}>
+      <RevealGroup amount={0.2}>
+        <RevealItem>
           <SectionHeading
             eyebrow="Skills"
             heading="Tools & technologies I work with"
             description="A practical stack spanning data science, machine learning, analytics, backend development, and modern web applications."
           />
-        </motion.div>
+        </RevealItem>
 
         <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {skillCategories.map(({ title, description, icon: Icon, skills }) => (
-            <motion.article
+            <RevealItem
+              as="article"
               key={title}
-              variants={shouldReduceMotion ? undefined : cardVariants}
               className="group rounded-lg border border-[var(--color-border)] bg-[rgba(16,19,24,0.72)] p-5 shadow-[0_24px_80px_rgba(0,0,0,0.16)] transition-colors hover:border-[var(--color-border-strong)] hover:bg-[rgba(21,25,34,0.78)]"
             >
               <div className="flex items-start gap-4">
@@ -202,10 +175,10 @@ export function Skills() {
                   );
                 })}
               </ul>
-            </motion.article>
+            </RevealItem>
           ))}
         </div>
-      </motion.div>
+      </RevealGroup>
     </Section>
   );
 }

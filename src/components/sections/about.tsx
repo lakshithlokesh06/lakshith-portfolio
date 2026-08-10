@@ -1,8 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import type { Variants } from "framer-motion";
-
+import { RevealGroup, RevealItem } from "@/components/ui/reveal";
 import { Section, SectionHeading } from "@/components/ui/section";
 
 const profileDetails = [
@@ -24,62 +22,36 @@ const profileDetails = [
   },
 ];
 
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.08,
-    },
-  },
-};
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 16 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.4, ease: "easeOut" },
-  },
-};
-
 export function About() {
-  const shouldReduceMotion = useReducedMotion();
-
   return (
     <Section id="about" className="border-t border-[rgba(37,43,54,0.55)]">
       <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
-        <motion.div
-          variants={shouldReduceMotion ? undefined : containerVariants}
-          initial={shouldReduceMotion ? false : "hidden"}
-          whileInView={shouldReduceMotion ? undefined : "visible"}
-          viewport={{ once: true, amount: 0.35 }}
-        >
-          <motion.div variants={shouldReduceMotion ? undefined : itemVariants}>
+        <RevealGroup amount={0.22}>
+          <RevealItem>
             <SectionHeading eyebrow="About" heading="Who I am & what I build" />
-          </motion.div>
+          </RevealItem>
 
           <div className="mt-8 space-y-5 text-base leading-8 text-[var(--color-muted)] sm:text-lg">
-            <motion.p variants={shouldReduceMotion ? undefined : itemVariants}>
-              I work across Data Science, Machine Learning, and Data Analytics, with an academic
-              foundation in Computer Applications and a specialization in Data Analytics. My focus
-              is on using data clearly and practically, from understanding patterns to building
+            <RevealItem as="p">
+              I work across Data Science, Machine Learning, and Data Analytics,
+              with an academic foundation in Computer Applications and a
+              specialization in Data Analytics. My focus is on using data
+              clearly and practically, from understanding patterns to building
               systems that make those insights easier to use.
-            </motion.p>
-            <motion.p variants={shouldReduceMotion ? undefined : itemVariants}>
-              I enjoy building practical data-driven applications, including analytics dashboards,
-              predictive systems, intelligent applications, and full-stack data products. I am
-              currently continuing my studies through an MSc in Data Science, strengthening the
-              technical depth behind the products I build.
-            </motion.p>
+            </RevealItem>
+            <RevealItem as="p">
+              I enjoy building practical data-driven applications, including
+              analytics dashboards, predictive systems, intelligent
+              applications, and full-stack data products. I am currently
+              continuing my studies through an MSc in Data Science,
+              strengthening the technical depth behind the products I build.
+            </RevealItem>
           </div>
-        </motion.div>
+        </RevealGroup>
 
-        <motion.aside
-          variants={shouldReduceMotion ? undefined : containerVariants}
-          initial={shouldReduceMotion ? false : "hidden"}
-          whileInView={shouldReduceMotion ? undefined : "visible"}
-          viewport={{ once: true, amount: 0.35 }}
+        <RevealGroup
+          as="aside"
+          amount={0.22}
           className="relative"
           aria-label="Profile summary"
         >
@@ -96,20 +68,21 @@ export function About() {
 
             <dl className="divide-y divide-[var(--color-border)]">
               {profileDetails.map((detail) => (
-                <motion.div
+                <RevealItem
                   key={detail.label}
-                  variants={shouldReduceMotion ? undefined : itemVariants}
                   className="grid gap-2 px-6 py-5 sm:grid-cols-[7rem_1fr] sm:items-center"
                 >
-                  <dt className="text-sm text-[var(--color-subtle)]">{detail.label}</dt>
+                  <dt className="text-sm text-[var(--color-subtle)]">
+                    {detail.label}
+                  </dt>
                   <dd className="text-sm font-medium text-[var(--color-foreground)]">
                     {detail.value}
                   </dd>
-                </motion.div>
+                </RevealItem>
               ))}
             </dl>
           </div>
-        </motion.aside>
+        </RevealGroup>
       </div>
     </Section>
   );

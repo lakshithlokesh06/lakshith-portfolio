@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { PageContainer } from "@/components/ui/page-container";
+import { Reveal, RevealGroup, RevealItem } from "@/components/ui/reveal";
 import { ProjectLinks } from "@/components/projects/project-links";
 import { ProjectVisual } from "@/components/projects/project-visual";
 import type { Project } from "@/types/project";
@@ -20,7 +21,10 @@ function DetailBlock({
   children: ReactNode;
 }) {
   return (
-    <section className="border-t border-[var(--color-border)] py-11 sm:py-12">
+    <Reveal
+      as="section"
+      className="border-t border-[var(--color-border)] py-11 sm:py-12"
+    >
       <div className="grid gap-5 lg:grid-cols-[13rem_1fr] xl:grid-cols-[14rem_1fr]">
         <h2 className="text-sm font-medium uppercase tracking-[0.22em] text-[var(--color-subtle)]">
           {title}
@@ -29,7 +33,7 @@ function DetailBlock({
           {children}
         </div>
       </div>
-    </section>
+    </Reveal>
   );
 }
 
@@ -140,8 +144,12 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
           Back to Projects
         </Link>
 
-        <header className="mt-10 grid gap-10 lg:grid-cols-[1.03fr_0.97fr] lg:items-end">
-          <div>
+        <RevealGroup
+          as="header"
+          amount={0.18}
+          className="mt-10 grid gap-10 lg:grid-cols-[1.03fr_0.97fr] lg:items-end"
+        >
+          <RevealItem>
             <div className="flex flex-wrap items-center gap-2">
               <span className="rounded-md border border-[var(--color-border)] bg-[rgba(8,9,11,0.28)] px-2.5 py-1 text-xs font-medium uppercase tracking-[0.16em] text-[var(--color-subtle)]">
                 {project.category}
@@ -172,14 +180,16 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
             </ul>
 
             <ProjectLinks project={project} />
-          </div>
+          </RevealItem>
 
-          <ProjectVisual
-            project={project}
-            large
-            priority={Boolean(project.flagship)}
-          />
-        </header>
+          <RevealItem>
+            <ProjectVisual
+              project={project}
+              large
+              priority={Boolean(project.flagship)}
+            />
+          </RevealItem>
+        </RevealGroup>
 
         <div className="mt-12">
           <ScreenshotGallery project={project} />

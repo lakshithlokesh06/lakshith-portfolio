@@ -1,11 +1,10 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import type { Variants } from "framer-motion";
 import { ArrowUpRight, GitBranch, Link2, Mail, MapPin } from "lucide-react";
 import Link from "next/link";
 
 import { site } from "@/data/site";
+import { RevealGroup, RevealItem } from "@/components/ui/reveal";
 import { Section, SectionHeading } from "@/components/ui/section";
 
 const contactMethods = [
@@ -32,49 +31,28 @@ const contactMethods = [
   },
 ];
 
-const sectionVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.08,
-    },
-  },
-};
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 16 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.4, ease: "easeOut" },
-  },
-};
-
 export function Contact() {
-  const shouldReduceMotion = useReducedMotion();
   const primaryEmailHref = `mailto:${site.email}`;
 
   return (
     <Section id="contact" className="pt-0">
-      <motion.div
-        variants={shouldReduceMotion ? undefined : sectionVariants}
-        initial={shouldReduceMotion ? false : "hidden"}
-        whileInView={shouldReduceMotion ? undefined : "visible"}
-        viewport={{ once: true, amount: 0.22 }}
+      <RevealGroup
+        amount={0.2}
         className="relative overflow-hidden rounded-lg border border-[var(--color-border)] bg-[linear-gradient(180deg,rgba(21,25,34,0.82),rgba(12,14,18,0.92))] px-5 py-10 shadow-[0_28px_90px_rgba(0,0,0,0.22)] sm:px-8 lg:px-10 lg:py-12"
       >
         <div className="absolute -right-24 -top-24 size-72 rounded-full bg-[rgba(103,232,249,0.08)] blur-3xl" />
 
         <div className="relative grid min-w-0 gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
-          <motion.div variants={shouldReduceMotion ? undefined : itemVariants} className="min-w-0">
-            <SectionHeading
-              eyebrow="Contact"
-              heading="Let's connect"
-              description="I'm open to opportunities, collaborations, and conversations around data science, machine learning, analytics, and data-driven applications."
-            />
+          <div className="min-w-0">
+            <RevealItem>
+              <SectionHeading
+                eyebrow="Contact"
+                heading="Let's connect"
+                description="I'm open to opportunities, collaborations, and conversations around data science, machine learning, analytics, and data-driven applications."
+              />
+            </RevealItem>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <RevealItem className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a
                 href={primaryEmailHref}
                 aria-label={`Email ${site.name}`}
@@ -95,44 +73,53 @@ export function Contact() {
               >
                 View selected work
               </Link>
-            </div>
-          </motion.div>
+            </RevealItem>
+          </div>
 
-          <motion.div
-            variants={shouldReduceMotion ? undefined : itemVariants}
-            className="min-w-0 rounded-lg border border-[var(--color-border)] bg-[rgba(8,9,11,0.28)] p-5"
-          >
+          <RevealItem className="min-w-0 rounded-lg border border-[var(--color-border)] bg-[rgba(8,9,11,0.28)] p-5">
             <div className="flex items-start gap-3 border-b border-[var(--color-border)] pb-5">
               <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-md border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-accent)]">
                 <MapPin aria-hidden="true" size={18} strokeWidth={1.8} />
               </span>
               <div>
-                <p className="text-sm font-medium text-[var(--color-foreground)]">{site.location}</p>
-                <p className="mt-1 text-sm text-[var(--color-muted)]">{site.title}</p>
+                <p className="text-sm font-medium text-[var(--color-foreground)]">
+                  {site.location}
+                </p>
+                <p className="mt-1 text-sm text-[var(--color-muted)]">
+                  {site.title}
+                </p>
               </div>
             </div>
 
             <div className="mt-5 grid gap-3">
-              {contactMethods.map(({ label, value, href, icon: Icon, external }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target={external ? "_blank" : undefined}
-                  rel={external ? "noopener noreferrer" : undefined}
-                  aria-label={label === "Email" ? `Email ${site.name}` : `Open ${label} profile`}
-                  className="group flex min-w-0 flex-col items-start gap-2 rounded-md border border-[var(--color-border)] px-4 py-3 text-sm transition-colors hover:border-[var(--color-border-strong)] hover:bg-[var(--color-surface)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-background)] sm:flex-row sm:items-center sm:justify-between sm:gap-4"
-                >
-                  <span className="flex shrink-0 items-center gap-3 text-[var(--color-foreground)]">
-                    <Icon aria-hidden="true" size={17} strokeWidth={1.8} />
-                    {label}
-                  </span>
-                  <span className="min-w-0 max-w-full break-words text-[var(--color-muted)] [overflow-wrap:anywhere] sm:flex-1 sm:text-right">{value}</span>
-                </a>
-              ))}
+              {contactMethods.map(
+                ({ label, value, href, icon: Icon, external }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target={external ? "_blank" : undefined}
+                    rel={external ? "noopener noreferrer" : undefined}
+                    aria-label={
+                      label === "Email"
+                        ? `Email ${site.name}`
+                        : `Open ${label} profile`
+                    }
+                    className="group flex min-w-0 flex-col items-start gap-2 rounded-md border border-[var(--color-border)] px-4 py-3 text-sm transition-colors hover:border-[var(--color-border-strong)] hover:bg-[var(--color-surface)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-background)] sm:flex-row sm:items-center sm:justify-between sm:gap-4"
+                  >
+                    <span className="flex shrink-0 items-center gap-3 text-[var(--color-foreground)]">
+                      <Icon aria-hidden="true" size={17} strokeWidth={1.8} />
+                      {label}
+                    </span>
+                    <span className="min-w-0 max-w-full break-words text-[var(--color-muted)] [overflow-wrap:anywhere] sm:flex-1 sm:text-right">
+                      {value}
+                    </span>
+                  </a>
+                ),
+              )}
             </div>
-          </motion.div>
+          </RevealItem>
         </div>
-      </motion.div>
+      </RevealGroup>
     </Section>
   );
 }
