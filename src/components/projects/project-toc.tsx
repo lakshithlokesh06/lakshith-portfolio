@@ -16,7 +16,7 @@ export function ProjectToc({ items }: ProjectTocProps) {
   const [activeId, setActiveId] = useState(items[0]?.id ?? "");
 
   useEffect(() => {
-    if (!items.length) {
+    if (!items.length || typeof IntersectionObserver === "undefined") {
       return;
     }
 
@@ -40,7 +40,7 @@ export function ProjectToc({ items }: ProjectTocProps) {
         }
       },
       {
-        rootMargin: "-7rem 0px -55% 0px",
+        rootMargin: "-120px 0px -60% 0px",
         threshold: [0.08, 0.18, 0.32, 0.5],
       },
     );

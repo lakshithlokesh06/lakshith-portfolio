@@ -35,7 +35,7 @@ export function Navbar() {
   }, []);
 
   useEffect(() => {
-    if (!isHomePage) {
+    if (!isHomePage || typeof IntersectionObserver === "undefined") {
       return;
     }
 
@@ -57,7 +57,7 @@ export function Navbar() {
         setActiveSection(nextActive ?? "");
       },
       {
-        rootMargin: "-5rem 0px -58% 0px",
+        rootMargin: "-96px 0px -55% 0px",
         threshold: [0.08, 0.18, 0.32, 0.5],
       },
     );
