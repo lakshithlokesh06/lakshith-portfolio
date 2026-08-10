@@ -2,7 +2,14 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import type { Variants } from "framer-motion";
-import { Bot, BrainCircuit, ChartNoAxesCombined, Code2, Database, Wrench } from "lucide-react";
+import {
+  Bot,
+  BrainCircuit,
+  ChartNoAxesCombined,
+  Code2,
+  Database,
+  Wrench,
+} from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 import { Section, SectionHeading } from "@/components/ui/section";
@@ -17,24 +24,27 @@ type SkillCategory = {
 const coreSkills = new Set([
   "Python",
   "SQL",
-  "Scikit-learn",
   "Pandas",
+  "NumPy",
+  "Scikit-learn",
+  "Matplotlib",
   "PostgreSQL",
-  "Streamlit",
-  "FastAPI",
-  "Next.js",
+  "Apache Spark",
+  "PySpark",
 ]);
 
 const skillCategories: SkillCategory[] = [
   {
     title: "Programming",
-    description: "Core languages used across analysis, systems, and application work.",
+    description:
+      "Core languages used across analysis, systems, and application work.",
     icon: Code2,
     skills: ["Python", "SQL", "Java", "C++"],
   },
   {
     title: "Data Science & Machine Learning",
-    description: "Practical tooling for exploration, modeling, interpretation, and preprocessing.",
+    description:
+      "Practical tooling for exploration, modeling, interpretation, and preprocessing.",
     icon: BrainCircuit,
     skills: [
       "Pandas",
@@ -62,13 +72,23 @@ const skillCategories: SkillCategory[] = [
   },
   {
     title: "Web & Application Development",
-    description: "Frameworks for building modern interfaces, APIs, and data apps.",
+    description:
+      "Frameworks for building modern interfaces, APIs, and data apps.",
     icon: ChartNoAxesCombined,
-    skills: ["Next.js", "React", "TypeScript", "FastAPI", "Flask", "Streamlit", "Tailwind CSS"],
+    skills: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "FastAPI",
+      "Flask",
+      "Streamlit",
+      "Tailwind CSS",
+    ],
   },
   {
     title: "AI & LLM Tools",
-    description: "Tools for building and experimenting with intelligent application workflows.",
+    description:
+      "Tools for building and experimenting with intelligent application workflows.",
     icon: Bot,
     skills: ["LangChain", "LangGraph", "OpenAI API", "Groq", "Ollama"],
   },
@@ -142,11 +162,16 @@ export function Skills() {
                   <h3 className="text-base font-semibold tracking-tight text-[var(--color-foreground)]">
                     {title}
                   </h3>
-                  <p className="mt-2 text-sm leading-6 text-[var(--color-muted)]">{description}</p>
+                  <p className="mt-2 text-sm leading-6 text-[var(--color-muted)]">
+                    {description}
+                  </p>
                 </div>
               </div>
 
-              <ul className="mt-6 flex flex-wrap gap-2" aria-label={`${title} skills`}>
+              <ul
+                className="mt-6 flex flex-wrap gap-2"
+                aria-label={`${title} skills`}
+              >
                 {skills.map((skill) => {
                   const isCore = coreSkills.has(skill);
 
