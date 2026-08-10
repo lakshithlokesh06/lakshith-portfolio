@@ -1,6 +1,6 @@
 # Lakshith S Lokesh — Portfolio
 
-Professional portfolio website for Lakshith S Lokesh, a Data Science & Machine Learning Developer.
+Professional portfolio website for Lakshith S Lokesh, focused on Data Science | Machine Learning | Data Analytics.
 
 ## Tech Stack
 

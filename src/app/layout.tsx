@@ -14,7 +14,7 @@ const inter = localFont({
   weight: "100 900",
 });
 
-const title = "Lakshith S Lokesh | Data Science & Machine Learning Developer";
+const title = `${site.name} | ${site.title}`;
 const description =
   "Portfolio of Lakshith S Lokesh, showcasing projects in data science, machine learning, data analytics, and full-stack data applications.";
 const metadataBase = getMetadataBase();

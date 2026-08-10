@@ -11,7 +11,7 @@ type SiteConfig = {
 
 export const site: SiteConfig = {
   name: "Lakshith S Lokesh",
-  title: "Data Science & Machine Learning Developer",
+  title: "Data Science | Machine Learning | Data Analytics",
   location: "Bengaluru, India",
   email: "lakshithlokesh06@gmail.com",
   github: "https://github.com/lakshithlokesh06",
