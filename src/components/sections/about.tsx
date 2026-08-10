@@ -56,7 +56,7 @@ export function About() {
           viewport={{ once: true, amount: 0.35 }}
         >
           <motion.div variants={shouldReduceMotion ? undefined : itemVariants}>
-            <SectionHeading eyebrow="About" heading="A little about me" />
+            <SectionHeading eyebrow="About" heading="Who I am & what I build" />
           </motion.div>
 
           <div className="mt-8 space-y-5 text-base leading-8 text-[var(--color-muted)] sm:text-lg">
