@@ -144,13 +144,13 @@ export function Skills() {
           />
         </RevealItem>
 
-        <div className="mt-10 grid items-start gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {skillCategories.map(
             ({ title, description, icon: Icon, skills, methods }) => (
               <RevealItem
                 as="article"
                 key={title}
-                className="group flex min-w-0 flex-col rounded-lg border border-[var(--color-border)] bg-[rgba(16,19,24,0.72)] p-5 shadow-[0_24px_80px_rgba(0,0,0,0.16)] transition-colors hover:border-[var(--color-border-strong)] hover:bg-[rgba(21,25,34,0.78)]"
+                className="group flex h-full min-w-0 flex-col rounded-lg border border-[var(--color-border)] bg-[rgba(16,19,24,0.72)] p-5 shadow-[0_24px_80px_rgba(0,0,0,0.16)] transition-colors hover:border-[var(--color-border-strong)] hover:bg-[rgba(21,25,34,0.78)]"
               >
                 <div className="flex min-w-0 items-start gap-4">
                   <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-md border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-accent)] transition-colors group-hover:border-[var(--color-border-strong)]">
