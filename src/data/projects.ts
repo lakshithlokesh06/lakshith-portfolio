@@ -5,7 +5,7 @@ export const projects: Project[] = [
     slug: "ai-smart-travel-planner",
     title: "AI Smart Travel Planner",
     description:
-      "Full-stack intelligent travel planning platform that generates personalized itineraries through a multi-agent workflow, with authentication, saved trips, live-data provider integrations, PDF export, and shareable itineraries.",
+      "Full-stack intelligent travel planning platform using a multi-agent LangGraph workflow to generate personalized itineraries. Features user authentication, saved trips, live provider integrations, PDF export, and shareable itinerary links — built end-to-end with Next.js, FastAPI, and PostgreSQL.",
     shortDescription:
       "A full-stack travel planning application designed to generate personalized trip itineraries through a multi-agent workflow.",
     category: "Full-Stack AI Application",
@@ -80,7 +80,7 @@ export const projects: Project[] = [
     slug: "autoinsight-intelligent-dataset-analyzer",
     title: "AutoInsight - Intelligent Dataset Analyzer",
     description:
-      "Data analysis application that automates dataset profiling, exploratory analysis, visualization, data-quality assessment, machine-learning recommendations, and professional report generation for uploaded CSV datasets.",
+      "Upload a CSV and get an automated end-to-end analysis — including dataset profiling, exploratory data analysis, visualizations, data-quality assessment, machine-learning recommendations, and a downloadable professional PDF report. Designed to analyze a wide range of CSV datasets with minimal configuration.",
     shortDescription:
       "A Streamlit-based intelligent exploratory data analysis application for uploaded CSV datasets.",
     category: "Data Analysis Application",
@@ -145,7 +145,7 @@ export const projects: Project[] = [
     slug: "job-market-analytics-portal",
     title: "Job Market Analytics Portal",
     description:
-      "Full-stack analytics platform for exploring job-market data, searching and filtering job listings, analyzing in-demand skills, and identifying skill gaps through interactive analytics.",
+      "Full-stack analytics platform built around a PostgreSQL job-market database. Enables skill-gap analysis, in-demand skill tracking, job filtering, and market-trend exploration — helping users understand skills and patterns across the job market.",
     shortDescription:
       "A Flask and PostgreSQL application for exploring job listings and understanding job-market skill demand.",
     category: "Analytics Platform",
@@ -211,7 +211,7 @@ export const projects: Project[] = [
     slug: "career-recommendation-system",
     title: "Career Recommendation System",
     description:
-      "Machine-learning application that recommends suitable career paths based on user skills and interests, with explainable recommendations and generated career guidance.",
+      "Machine-learning application that maps user skills to suitable career paths using a trained classification model, SHAP-style explainability, and Groq-powered AI guidance to make recommendations easier to understand and act on.",
     shortDescription:
       "A machine-learning web application that recommends potential career paths based on a user's skills and interests.",
     category: "Machine Learning Application",
@@ -249,7 +249,7 @@ export const projects: Project[] = [
     slug: "commerce-data-insights-dashboard",
     title: "Commerce Data Insights Dashboard",
     description:
-      "Interactive e-commerce analytics dashboard for exploring business KPIs, sales trends, product performance, and demand forecasting from commerce datasets.",
+      "Interactive e-commerce analytics dashboard covering sales KPIs, product performance, revenue trends, and demand forecasting. Uses a SQLite backend with dynamic Plotly visualizations to make business data easier to explore and understand.",
     shortDescription:
       "An interactive analytics application for exploring e-commerce performance and generating forecasting insights.",
     category: "Analytics Dashboard",
@@ -295,7 +295,7 @@ export const projects: Project[] = [
     slug: "student-score-predictor",
     title: "Student Score Predictor",
     description:
-      "Machine-learning application that predicts academic performance using multiple regression models and provides explainable insights and recommendations.",
+      "Machine-learning application for predicting student academic performance using regression models, with SHAP explainability features that help show how factors such as study habits, sleep, previous academic performance, and practice patterns influence predictions.",
     shortDescription:
       "A machine-learning application for predicting academic performance and explaining model predictions.",
     category: "Predictive ML Application",

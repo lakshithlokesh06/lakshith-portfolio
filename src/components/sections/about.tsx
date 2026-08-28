@@ -33,18 +33,13 @@ export function About() {
 
           <div className="mt-8 space-y-5 text-base leading-8 text-[var(--color-muted)] sm:text-lg">
             <RevealItem as="p">
-              I work across Data Science, Machine Learning, and Data Analytics,
-              with an academic foundation in Computer Applications and a
-              specialization in Data Analytics. My focus is on using data
-              clearly and practically, from understanding patterns to building
-              systems that make those insights easier to use.
-            </RevealItem>
-            <RevealItem as="p">
-              I enjoy building practical data-driven applications, including
-              analytics dashboards, predictive systems, intelligent
-              applications, and full-stack data products. I am currently
-              continuing my studies through an MSc in Data Science,
-              strengthening the technical depth behind the products I build.
+              I got into data because I wanted to understand why things happen,
+              not just that they did. That curiosity led me to build systems
+              that turn data and ideas into solutions people can actually use
+              &mdash; from predicting student outcomes to planning trips with AI
+              agents. I&apos;m currently pursuing my MSc in Data Science at
+              Chanakya University while building projects that sit at the
+              intersection of machine learning, analytics, and real products.
             </RevealItem>
           </div>
         </RevealGroup>

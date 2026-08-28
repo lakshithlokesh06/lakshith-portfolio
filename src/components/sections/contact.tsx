@@ -52,6 +52,15 @@ export function Contact() {
               />
             </RevealItem>
 
+            <RevealItem
+              as="p"
+              className="mt-5 max-w-2xl text-base leading-7 text-[var(--color-muted)]"
+            >
+              Open to full-time roles, internships, and project collaborations
+              in Data Science, Machine Learning, and Data Analytics &mdash;
+              available for remote and on-site opportunities.
+            </RevealItem>
+
             <RevealItem className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a
                 href={primaryEmailHref}
