@@ -25,6 +25,7 @@ type SkillCategory = {
   description: string;
   icon: LucideIcon;
   skills: string[];
+  concepts?: string[];
   methods?: string[];
 };
 
@@ -56,6 +57,11 @@ const skillCategories: SkillCategory[] = [
       "Core languages used across analysis, systems, and application work.",
     icon: Code2,
     skills: ["Python", "SQL", "Java", "C++"],
+    concepts: [
+      "Object-Oriented Programming",
+      "Data Structures",
+      "Algorithms",
+    ],
   },
   {
     title: "Data Science & Machine Learning",
@@ -146,7 +152,7 @@ export function Skills() {
 
         <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {skillCategories.map(
-            ({ title, description, icon: Icon, skills, methods }) => (
+            ({ title, description, icon: Icon, skills, concepts, methods }) => (
               <RevealItem
                 as="article"
                 key={title}
@@ -203,6 +209,26 @@ export function Skills() {
                     );
                   })}
                 </ul>
+
+                {concepts?.length ? (
+                  <div className="mt-5 border-t border-[var(--color-border)] pt-4">
+                    <p className="text-xs font-medium uppercase tracking-[0.18em] text-[var(--color-subtle)]">
+                      Concepts
+                    </p>
+                    <ul
+                      className="mt-3 flex flex-wrap content-start gap-x-2 gap-y-2"
+                      aria-label={`${title} concepts`}
+                    >
+                      {concepts.map((concept) => (
+                        <li key={concept}>
+                          <span className="inline-flex min-h-7 items-center whitespace-nowrap rounded-md border border-[rgba(148,163,184,0.28)] bg-transparent px-2 py-0.5 text-[0.7rem] font-medium leading-4 text-[var(--color-muted)] opacity-85 transition-colors hover:border-[var(--color-border-strong)] hover:text-[var(--color-foreground)] hover:opacity-100">
+                            {concept}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
 
                 {methods?.length ? (
                   <div className="mt-5 border-t border-[var(--color-border)] pt-4">
