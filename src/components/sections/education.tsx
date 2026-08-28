@@ -1,5 +1,7 @@
 "use client";
 
+import { GraduationCap } from "lucide-react";
+
 import { RevealGroup, RevealItem } from "@/components/ui/reveal";
 import { Section, SectionHeading } from "@/components/ui/section";
 
@@ -37,21 +39,24 @@ function EducationEntry({
   return (
     <RevealItem
       as="article"
-      className="relative grid gap-4 border-l border-[var(--color-border)] pb-10 pl-6 last:pb-0 sm:grid-cols-[1fr_auto] sm:gap-8 sm:pl-8"
+      className="relative grid gap-4 rounded-lg border border-[var(--color-border)] bg-[rgba(8,9,11,0.24)] p-5 shadow-[0_18px_60px_rgba(0,0,0,0.12)] transition-colors hover:border-[var(--color-border-strong)] sm:grid-cols-[1fr_auto] sm:gap-8 sm:p-6"
     >
-      <span className="absolute -left-[5px] top-1 size-2.5 rounded-full border border-[var(--color-accent)] bg-[var(--color-background)] shadow-[0_0_0_6px_rgba(103,232,249,0.08)]" />
-
-      <div>
-        <h3 className="text-xl font-semibold tracking-tight text-[var(--color-foreground)]">
-          {degree}
-        </h3>
-        {detail ? (
-          <p className="mt-2 text-sm text-[var(--color-muted)]">{detail}</p>
-        ) : null}
-        <p className="mt-4 text-base font-medium text-[var(--color-foreground)]">
-          {institution}
-        </p>
-        <p className="mt-1 text-sm text-[var(--color-subtle)]">{location}</p>
+      <div className="flex min-w-0 gap-4">
+        <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-md border border-[rgba(103,232,249,0.24)] bg-[rgba(103,232,249,0.06)] text-[var(--color-accent)]">
+          <GraduationCap aria-hidden="true" size={19} strokeWidth={1.8} />
+        </span>
+        <div className="min-w-0">
+          <h3 className="text-lg font-semibold tracking-tight text-[var(--color-foreground)] sm:text-xl">
+            {degree}
+          </h3>
+          {detail ? (
+            <p className="mt-2 text-sm text-[var(--color-muted)]">{detail}</p>
+          ) : null}
+          <p className="mt-4 text-base font-medium text-[var(--color-foreground)]">
+            {institution}
+          </p>
+          <p className="mt-1 text-sm text-[var(--color-subtle)]">{location}</p>
+        </div>
       </div>
 
       <div className="sm:pt-1">
@@ -75,7 +80,7 @@ export function Education() {
           />
         </RevealItem>
 
-        <div className="mt-10 rounded-lg border border-[var(--color-border)] bg-[rgba(16,19,24,0.72)] px-6 py-8 shadow-[0_28px_90px_rgba(0,0,0,0.18)] sm:px-8 sm:py-10">
+        <div className="mt-10 grid gap-4 rounded-lg border border-[var(--color-border)] bg-[linear-gradient(180deg,rgba(21,25,34,0.76),rgba(12,14,18,0.86))] p-4 shadow-[0_28px_90px_rgba(0,0,0,0.18)] sm:p-5">
           {educationEntries.map((entry) => (
             <EducationEntry
               key={`${entry.degree}-${entry.status}`}

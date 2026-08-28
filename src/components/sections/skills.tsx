@@ -1,12 +1,19 @@
 "use client";
 
 import {
+  Atom,
   Bot,
   BrainCircuit,
+  Braces,
   ChartNoAxesCombined,
+  Cloud,
   Code2,
   Database,
+  GitBranch,
+  Server,
+  Triangle,
   Wrench,
+  Zap,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
@@ -110,6 +117,21 @@ const skillCategories: SkillCategory[] = [
   },
 ];
 
+const skillIcons: Partial<Record<string, LucideIcon>> = {
+  Python: Code2,
+  PostgreSQL: Database,
+  SQLite: Database,
+  "Next.js": Triangle,
+  React: Atom,
+  TypeScript: Braces,
+  FastAPI: Zap,
+  Streamlit: ChartNoAxesCombined,
+  Git: GitBranch,
+  GitHub: GitBranch,
+  Vercel: Cloud,
+  Flask: Server,
+};
+
 export function Skills() {
   return (
     <Section id="skills" className="pt-0">
@@ -150,6 +172,7 @@ export function Skills() {
                 >
                   {skills.map((skill) => {
                     const isCore = coreSkills.has(skill);
+                    const SkillIcon = skillIcons[skill];
 
                     return (
                       <li key={skill}>
@@ -160,7 +183,18 @@ export function Skills() {
                               : "border-[var(--color-border)] bg-[rgba(8,9,11,0.28)] text-[var(--color-muted)]"
                           } hover:border-[var(--color-border-strong)] hover:text-[var(--color-foreground)]`}
                         >
-                          {isCore ? (
+                          {SkillIcon ? (
+                            <SkillIcon
+                              aria-hidden="true"
+                              size={16}
+                              strokeWidth={1.8}
+                              className={
+                                isCore
+                                  ? "shrink-0 text-[var(--color-accent)]"
+                                  : "shrink-0 text-[var(--color-subtle)]"
+                              }
+                            />
+                          ) : isCore ? (
                             <span className="size-1.5 shrink-0 rounded-full bg-[var(--color-accent)]" />
                           ) : null}
                           {skill}

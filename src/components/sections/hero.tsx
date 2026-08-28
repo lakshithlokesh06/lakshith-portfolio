@@ -2,7 +2,17 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import type { Variants } from "framer-motion";
-import { FileText, GitBranch, Link2 } from "lucide-react";
+import {
+  Activity,
+  BrainCircuit,
+  Code2,
+  FileText,
+  GitBranch,
+  Link2,
+  Search,
+  Send,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import Link from "next/link";
 
 import { site } from "@/data/site";
@@ -16,30 +26,133 @@ const socialLinks = [
 const workflowSteps = [
   {
     number: "01",
+    icon: Search,
     title: "Understand",
     description: "Define the problem, objectives, and available data.",
   },
   {
     number: "02",
+    icon: Activity,
     title: "Analyze",
     description: "Explore patterns, relationships, quality issues, and useful signals.",
   },
   {
     number: "03",
+    icon: BrainCircuit,
     title: "Model",
     description: "Build and evaluate machine-learning solutions when they add value.",
   },
   {
     number: "04",
+    icon: Code2,
     title: "Build",
     description: "Turn insights and models into practical applications and interfaces.",
   },
   {
     number: "05",
+    icon: Send,
     title: "Deliver",
     description: "Communicate results through dashboards, reports, and deployable products.",
   },
 ];
+
+function HeroDataNetwork() {
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
+    >
+      <svg
+        className="hero-data-network absolute left-1/2 top-6 h-[34rem] w-[52rem] -translate-x-1/2 opacity-[0.08] sm:top-4 sm:h-[38rem] sm:w-[64rem] lg:left-[54%] lg:top-10 lg:h-[44rem] lg:w-[72rem]"
+        viewBox="0 0 960 620"
+        fill="none"
+      >
+        <g className="hidden sm:block" stroke="currentColor" strokeWidth="1">
+          <path d="M102 190 L228 118 L366 172 L508 102 L664 154 L826 94" />
+          <path d="M178 352 L304 274 L450 326 L594 246 L768 314" />
+          <path d="M228 118 L304 274 L366 172 L450 326 L508 102 L594 246 L664 154 L768 314" />
+          <path d="M102 190 L178 352 L304 274" />
+          <path d="M664 154 L768 314 L826 94" />
+        </g>
+        <g fill="currentColor">
+          {[
+            [102, 190],
+            [178, 352],
+            [228, 118],
+            [304, 274],
+            [366, 172],
+            [450, 326],
+            [508, 102],
+            [594, 246],
+            [664, 154],
+            [768, 314],
+            [826, 94],
+          ].map(([cx, cy]) => (
+            <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r="4.5" />
+          ))}
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function WorkflowStep({
+  step,
+  isLast,
+  shouldReduceMotion,
+}: {
+  step: {
+    number: string;
+    icon: LucideIcon;
+    title: string;
+    description: string;
+  };
+  isLast: boolean;
+  shouldReduceMotion: boolean | null;
+}) {
+  const Icon = step.icon;
+
+  return (
+    <motion.li
+      key={step.number}
+      variants={
+        shouldReduceMotion
+          ? undefined
+          : {
+              hidden: { opacity: 0, y: 10 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.32, ease: "easeOut" },
+              },
+            }
+      }
+      className="relative grid grid-cols-[2.75rem_minmax(0,1fr)] gap-4 py-4 first:pt-0 last:pb-0"
+    >
+      {!isLast ? (
+        <span
+          aria-hidden="true"
+          className="absolute left-[1.375rem] top-9 h-[calc(100%-1.25rem)] w-px bg-[linear-gradient(180deg,rgba(103,232,249,0.22),rgba(37,43,54,0.35))]"
+        />
+      ) : null}
+      <span className="relative z-10 inline-flex size-11 items-center justify-center rounded-md border border-[rgba(103,232,249,0.24)] bg-[rgba(8,9,11,0.42)] text-[var(--color-accent)]">
+        <Icon aria-hidden="true" size={17} strokeWidth={1.8} />
+        <span className="sr-only">{step.number}</span>
+      </span>
+      <span className="min-w-0">
+        <span className="text-xs font-semibold tracking-[0.18em] text-[var(--color-accent)]">
+          {step.number}
+        </span>
+        <span className="mt-1 block text-sm font-semibold text-[var(--color-foreground)]">
+          {step.title}
+        </span>
+        <span className="mt-1 block text-sm leading-6 text-[var(--color-muted)]">
+          {step.description}
+        </span>
+      </span>
+    </motion.li>
+  );
+}
 
 function HeroVisual() {
   const shouldReduceMotion = useReducedMotion();
@@ -66,37 +179,15 @@ function HeroVisual() {
           initial={shouldReduceMotion ? false : "hidden"}
           animate={shouldReduceMotion ? undefined : "visible"}
           transition={shouldReduceMotion ? undefined : { staggerChildren: 0.07, delayChildren: 0.25 }}
-          className="divide-y divide-[var(--color-border)]"
+          className="pt-4"
         >
-          {workflowSteps.map((step) => (
-            <motion.li
+          {workflowSteps.map((step, index) => (
+            <WorkflowStep
               key={step.number}
-              variants={
-                shouldReduceMotion
-                  ? undefined
-                  : {
-                      hidden: { opacity: 0, y: 10 },
-                      visible: {
-                        opacity: 1,
-                        y: 0,
-                        transition: { duration: 0.32, ease: "easeOut" },
-                      },
-                    }
-              }
-              className="grid grid-cols-[2.5rem_minmax(0,1fr)] gap-4 py-3.5 sm:grid-cols-[3rem_minmax(0,1fr)] sm:py-4"
-            >
-              <span className="pt-0.5 text-xs font-semibold tracking-[0.18em] text-[var(--color-accent)]">
-                {step.number}
-              </span>
-              <span className="min-w-0">
-                <span className="block text-sm font-semibold text-[var(--color-foreground)]">
-                  {step.title}
-                </span>
-                <span className="mt-1 block text-sm leading-6 text-[var(--color-muted)]">
-                  {step.description}
-                </span>
-              </span>
-            </motion.li>
+              step={step}
+              isLast={index === workflowSteps.length - 1}
+              shouldReduceMotion={shouldReduceMotion}
+            />
           ))}
         </motion.ol>
 
@@ -137,7 +228,8 @@ export function Hero() {
 
   return (
     <section className="relative overflow-hidden py-16 sm:py-24 lg:min-h-[calc(100vh-4rem)] lg:py-28">
-      <PageContainer className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
+      <HeroDataNetwork />
+      <PageContainer className="relative z-10 grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
         <motion.div
           variants={shouldReduceMotion ? undefined : container}
           initial={shouldReduceMotion ? false : "hidden"}

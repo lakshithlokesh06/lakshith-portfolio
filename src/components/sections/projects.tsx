@@ -46,7 +46,7 @@ function ProjectCard({
   return (
     <RevealItem
       as="article"
-      className={`group flex h-full flex-col overflow-hidden rounded-lg border bg-[rgba(16,19,24,0.72)] shadow-[0_24px_80px_rgba(0,0,0,0.16)] transition-all duration-300 hover:border-[var(--color-border-strong)] hover:bg-[rgba(21,25,34,0.8)] motion-safe:hover:-translate-y-1 ${
+      className={`group flex h-full flex-col overflow-hidden rounded-lg border bg-[rgba(16,19,24,0.72)] shadow-[0_24px_80px_rgba(0,0,0,0.16)] transition-all duration-300 hover:border-[var(--color-border-strong)] hover:bg-[rgba(21,25,34,0.8)] hover:shadow-[0_30px_90px_rgba(0,0,0,0.22)] motion-safe:hover:-translate-y-1 ${
         isFlagship
           ? "border-[rgba(103,232,249,0.28)]"
           : "border-[var(--color-border)]"

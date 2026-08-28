@@ -67,6 +67,28 @@ body::before {
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent 65%);
 }
 
+.hero-data-network {
+  color: var(--color-accent);
+  transform-origin: center;
+  animation: hero-network-drift 18s ease-in-out infinite alternate;
+}
+
+@keyframes hero-network-drift {
+  from {
+    transform: translate3d(-50%, 0, 0) scale(1);
+  }
+
+  to {
+    transform: translate3d(calc(-50% + 1rem), -0.75rem, 0) scale(1.02);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-data-network {
+    animation: none;
+  }
+}
+
 :focus-visible {
   outline: 2px solid var(--color-focus);
   outline-offset: 3px;
