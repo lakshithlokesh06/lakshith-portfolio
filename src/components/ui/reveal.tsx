@@ -56,9 +56,9 @@ export function Reveal({
   as = "div",
   children,
   delay = 0,
-  duration = 0.4,
+  duration = 0.6,
   once = true,
-  y = 14,
+  y = 24,
   ...props
 }: RevealBaseProps) {
   const shouldReduceMotion = useReducedMotion();
@@ -114,8 +114,8 @@ export function RevealItem({
   as = "div",
   children,
   delay = 0,
-  duration = 0.4,
-  y = 14,
+  duration = 0.6,
+  y = 24,
   ...props
 }: RevealBaseProps) {
   const shouldReduceMotion = useReducedMotion();
