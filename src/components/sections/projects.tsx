@@ -35,10 +35,13 @@ function TechStack({ project, limit }: { project: Project; limit: number }) {
   );
 }
 
-function ProjectMetadata({ project }: { project: Project }) {
+function ProjectMetadata({ project, number }: { project: Project; number?: string }) {
   return (
     <div className="project-metadata">
-      <span>{project.category}</span>
+      <span>
+        {number ? <small aria-hidden="true" className="mr-2 text-[0.625rem] font-normal tabular-nums text-[var(--color-subtle)]">{number}</small> : null}
+        {project.category}
+      </span>
       {project.featured ? <span>{project.status}</span> : null}
     </div>
   );
@@ -77,14 +80,14 @@ function FeaturedProject({ project, index }: { project: Project; index: number }
   );
 }
 
-function ProjectCard({ project }: { project: Project }) {
+function ProjectCard({ project, number }: { project: Project; number: string }) {
   return (
     <RevealItem as="article" className="project-card project-card-compact group flex h-full min-w-0 flex-col overflow-hidden border border-[var(--color-border)] transition-all duration-300 motion-safe:hover:-translate-y-1">
       <div className="project-media p-4 pb-0">
         <ProjectVisual project={project} sizes="(min-width: 1280px) 360px, (min-width: 768px) 44vw, 92vw" />
       </div>
       <div className="project-copy flex flex-1 flex-col p-5">
-        <ProjectMetadata project={project} />
+        <ProjectMetadata project={project} number={number} />
         <h3 className="mt-5 text-xl font-semibold leading-tight tracking-tight text-balance">{project.title}</h3>
         <p className="mt-4 text-sm leading-7 text-[var(--color-muted)]">{project.description}</p>
         <TechStack project={project} limit={5} />
@@ -128,7 +131,13 @@ export function Projects() {
             ))}
           </div>
           <div className="compact-projects grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {secondaryProjects.map((project) => <ProjectCard key={project.slug} project={project} />)}
+            {secondaryProjects.map((project, index) => (
+              <ProjectCard
+                key={project.slug}
+                project={project}
+                number={String(showcaseProjects.length + index + 1).padStart(2, "0")}
+              />
+            ))}
           </div>
         </RevealGroup>
       </Section>
