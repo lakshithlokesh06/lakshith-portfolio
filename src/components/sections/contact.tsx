@@ -38,7 +38,7 @@ export function Contact() {
     <Section id="contact" className="pt-0">
       <RevealGroup
         amount={0.2}
-        className="relative overflow-hidden rounded-lg border border-[var(--color-border)] bg-[linear-gradient(180deg,rgba(21,25,34,0.82),rgba(12,14,18,0.92))] px-5 py-10 shadow-[0_28px_90px_rgba(0,0,0,0.22)] sm:px-8 lg:px-10 lg:py-12"
+        className="contact-panel relative overflow-hidden rounded-lg border border-[var(--color-border)] bg-[linear-gradient(180deg,rgba(21,25,34,0.82),rgba(12,14,18,0.92))] px-5 py-10 shadow-[0_28px_90px_rgba(0,0,0,0.22)] sm:px-8 lg:px-10 lg:py-12"
       >
         <div className="absolute -right-24 -top-24 size-72 rounded-full bg-[rgba(103,232,249,0.08)] blur-3xl" />
 
@@ -65,7 +65,7 @@ export function Contact() {
               <a
                 href={primaryEmailHref}
                 aria-label={`Email ${site.name}`}
-                className="group inline-flex h-11 items-center justify-center gap-2 rounded-md bg-[var(--color-foreground)] px-5 text-sm font-semibold !text-[var(--color-background)] transition-colors hover:bg-white hover:!text-[var(--color-background)] focus-visible:!text-[var(--color-background)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-background)]"
+                className="primary-action group inline-flex h-11 items-center justify-center gap-2 rounded-md bg-[var(--color-foreground)] px-5 text-sm font-semibold !text-[var(--color-background)] transition-colors hover:bg-white hover:!text-[var(--color-background)] focus-visible:!text-[var(--color-background)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-background)]"
               >
                 Get in touch
                 <ArrowUpRight
@@ -85,7 +85,7 @@ export function Contact() {
             </RevealItem>
           </div>
 
-          <RevealItem className="min-w-0 rounded-lg border border-[var(--color-border)] bg-[rgba(8,9,11,0.28)] p-5">
+          <RevealItem className="contact-details min-w-0 rounded-lg border border-[var(--color-border)] bg-[rgba(8,9,11,0.28)] p-5">
             <div className="flex items-start gap-3 border-b border-[var(--color-border)] pb-5">
               <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-md border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-accent)]">
                 <MapPin aria-hidden="true" size={18} strokeWidth={1.8} />

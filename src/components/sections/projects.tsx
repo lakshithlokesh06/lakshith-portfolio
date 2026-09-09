@@ -46,18 +46,23 @@ function ProjectCard({
   return (
     <RevealItem
       as="article"
-      className={`group flex h-full flex-col overflow-hidden rounded-lg border bg-[rgba(16,19,24,0.72)] shadow-[0_24px_80px_rgba(0,0,0,0.16)] transition-all duration-300 hover:border-[var(--color-border-strong)] hover:bg-[rgba(21,25,34,0.8)] hover:shadow-[0_30px_90px_rgba(0,0,0,0.22)] motion-safe:hover:-translate-y-1 ${
+      className={`project-card ${large ? "project-card-featured" : ""} group flex h-full flex-col overflow-hidden rounded-lg border bg-[rgba(16,19,24,0.72)] shadow-[0_24px_80px_rgba(0,0,0,0.16)] transition-all duration-300 hover:border-[var(--color-border-strong)] hover:bg-[rgba(21,25,34,0.8)] hover:shadow-[0_30px_90px_rgba(0,0,0,0.22)] motion-safe:hover:-translate-y-1 ${
         isFlagship
           ? "border-[rgba(103,232,249,0.28)]"
           : "border-[var(--color-border)]"
-      } ${large ? "lg:grid lg:grid-cols-[1fr_0.94fr]" : ""}`}
+      } ${large ? "lg:grid lg:grid-cols-[0.9fr_1.1fr]" : ""}`}
     >
-      <div className={`${large ? "p-5 sm:p-6 lg:order-2" : "p-4 pb-0"}`}>
-        <ProjectVisual project={project} large={large} priority={isFlagship} />
+      <div className={`project-media ${large ? "p-5 sm:p-6 lg:order-2" : "p-4 pb-0"}`}>
+        <ProjectVisual
+          project={project}
+          large={large}
+          priority={isFlagship}
+          sizes={isFlagship ? "(min-width: 1280px) 1100px, 92vw" : undefined}
+        />
       </div>
 
       <div
-        className={`flex flex-1 flex-col ${large ? "p-6 pt-2 sm:p-7 lg:p-8" : "p-5"}`}
+        className={`project-copy flex flex-1 flex-col ${large ? "p-6 pt-2 sm:p-7 lg:p-8" : "p-5"}`}
       >
         <div className="flex flex-wrap items-center gap-2">
           <span className="rounded-md border border-[var(--color-border)] bg-[rgba(8,9,11,0.28)] px-2.5 py-1 text-xs font-medium uppercase tracking-[0.16em] text-[var(--color-subtle)]">
@@ -106,7 +111,7 @@ export function Projects() {
           />
         </RevealItem>
 
-        <div className="mt-10 grid gap-5">
+        <div className="featured-projects mt-10 grid gap-7">
           {featuredProjects.map((project) => (
             <ProjectCard key={project.slug} project={project} large />
           ))}

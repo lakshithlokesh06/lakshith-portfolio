@@ -62,7 +62,7 @@ export function ProjectToc({ items }: ProjectTocProps) {
     <aside className="hidden lg:block">
       <nav
         aria-label="Project case study sections"
-        className="sticky top-24 rounded-lg border border-[var(--color-border)] bg-[rgba(8,9,11,0.3)] p-3"
+        className="case-toc sticky top-24 rounded-lg border border-[var(--color-border)] bg-[rgba(8,9,11,0.3)] p-3"
       >
         <p className="px-3 pb-3 text-xs font-medium uppercase tracking-[0.2em] text-[var(--color-subtle)]">
           Case Study

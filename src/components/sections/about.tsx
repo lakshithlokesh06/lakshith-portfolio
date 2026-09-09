@@ -24,7 +24,7 @@ const profileDetails = [
 
 export function About() {
   return (
-    <Section id="about" className="border-t border-[rgba(37,43,54,0.55)]">
+    <Section id="about" className="about-section">
       <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
         <RevealGroup amount={0.22}>
           <RevealItem>
@@ -33,8 +33,8 @@ export function About() {
 
           <div className="mt-8 space-y-5 text-base leading-8 text-[var(--color-muted)] sm:text-lg">
             <RevealItem as="p">
-              I got into data because I wanted to understand why things happen,
-              not just that they did. That curiosity led me to build systems
+              <span className="text-[var(--color-foreground)]">I got into data because I wanted to understand why things happen,
+              not just that they did.</span> That curiosity led me to build systems
               that turn data and ideas into solutions people can actually use
               &mdash; from predicting student outcomes to planning trips with AI
               agents. I&apos;m currently pursuing my MSc in Data Science at
@@ -51,7 +51,7 @@ export function About() {
           aria-label="Profile summary"
         >
           <div className="absolute -inset-4 rounded-full bg-[rgba(103,232,249,0.06)] blur-3xl" />
-          <div className="relative overflow-hidden rounded-lg border border-[var(--color-border)] bg-[linear-gradient(180deg,rgba(21,25,34,0.82),rgba(12,14,18,0.9))] shadow-[0_28px_90px_rgba(0,0,0,0.24)]">
+          <div className="profile-panel relative overflow-hidden rounded-lg border border-[var(--color-border)] bg-[linear-gradient(180deg,rgba(21,25,34,0.82),rgba(12,14,18,0.9))] shadow-[0_28px_90px_rgba(0,0,0,0.24)]">
             <div className="border-b border-[var(--color-border)] px-6 py-5">
               <p className="text-xs font-medium uppercase tracking-[0.22em] text-[var(--color-subtle)]">
                 Profile Snapshot

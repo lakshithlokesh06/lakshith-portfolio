@@ -14,7 +14,7 @@ type SectionHeadingProps = {
 
 export function Section({ children, className = "", ...props }: SectionProps) {
   return (
-    <section className={`scroll-mt-24 py-[var(--section-spacing)] ${className}`} {...props}>
+    <section className={`portfolio-section scroll-mt-24 py-[var(--section-spacing)] ${className}`} {...props}>
       <PageContainer>{children}</PageContainer>
     </section>
   );
@@ -22,7 +22,7 @@ export function Section({ children, className = "", ...props }: SectionProps) {
 
 export function SectionHeading({ eyebrow, heading, description }: SectionHeadingProps) {
   return (
-    <div className="min-w-0 max-w-3xl">
+    <div className="section-heading min-w-0 max-w-3xl">
       {eyebrow ? (
         <p className="mb-4 text-sm font-medium uppercase tracking-[0.24em] text-[var(--color-accent)]">
           {eyebrow}

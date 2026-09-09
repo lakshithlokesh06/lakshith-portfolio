@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { FileText, GitBranch, Link2, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -16,6 +16,7 @@ const socialLinks = [
 
 export function Navbar() {
   const pathname = usePathname();
+  const shouldReduceMotion = useReducedMotion();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
@@ -91,7 +92,7 @@ export function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 border-b transition-colors duration-300 ${
+      className={`site-navbar sticky top-0 z-50 border-b transition-colors duration-300 ${
         isScrolled || isOpen
           ? "border-[var(--color-border)] bg-[rgba(8,9,11,0.82)] backdrop-blur-md"
           : "border-transparent bg-transparent"
@@ -185,10 +186,10 @@ export function Navbar() {
         {isOpen ? (
           <motion.div
             id="mobile-navigation"
-            initial={{ height: 0, opacity: 0 }}
+            initial={shouldReduceMotion ? false : { height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.18, ease: "easeOut" }}
+            transition={{ duration: shouldReduceMotion ? 0 : 0.18, ease: "easeOut" }}
             className="overflow-hidden border-t border-[var(--color-border)] bg-[rgba(8,9,11,0.96)] lg:hidden"
           >
             <PageContainer className="py-5">

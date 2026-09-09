@@ -156,7 +156,7 @@ export function Skills() {
               <RevealItem
                 as="article"
                 key={title}
-                className="group flex h-full min-w-0 flex-col rounded-lg border border-[var(--color-border)] bg-[rgba(16,19,24,0.72)] p-5 shadow-[0_24px_80px_rgba(0,0,0,0.16)] transition-colors hover:border-[var(--color-border-strong)] hover:bg-[rgba(21,25,34,0.78)]"
+                className="skill-card group flex h-full min-w-0 flex-col rounded-lg border border-[var(--color-border)] bg-[rgba(16,19,24,0.72)] p-5 shadow-[0_24px_80px_rgba(0,0,0,0.16)] transition-colors hover:border-[var(--color-border-strong)] hover:bg-[rgba(21,25,34,0.78)]"
               >
                 <div className="flex min-w-0 items-start gap-4">
                   <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-md border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-accent)] transition-colors group-hover:border-[var(--color-border-strong)]">
@@ -183,7 +183,7 @@ export function Skills() {
                     return (
                       <li key={skill}>
                         <span
-                          className={`inline-flex min-h-9 items-center gap-2 whitespace-nowrap rounded-md border px-3 py-1.5 text-sm leading-5 transition-colors ${
+                          className={`inline-flex min-h-9 items-center gap-2 whitespace-normal rounded-md border px-3 py-1.5 text-sm leading-5 transition-colors ${
                             isCore
                               ? "border-[rgba(103,232,249,0.36)] bg-[rgba(103,232,249,0.07)] font-medium text-[var(--color-foreground)]"
                               : "border-[var(--color-border)] bg-[rgba(8,9,11,0.28)] text-[var(--color-muted)]"
@@ -221,7 +221,7 @@ export function Skills() {
                     >
                       {concepts.map((concept) => (
                         <li key={concept}>
-                          <span className="inline-flex min-h-7 items-center whitespace-nowrap rounded-md border border-[rgba(148,163,184,0.28)] bg-transparent px-2 py-0.5 text-[0.7rem] font-medium leading-4 text-[var(--color-muted)] opacity-85 transition-colors hover:border-[var(--color-border-strong)] hover:text-[var(--color-foreground)] hover:opacity-100">
+                          <span className="inline-flex min-h-7 items-center whitespace-normal rounded-md border border-[rgba(148,163,184,0.28)] bg-transparent px-2 py-0.5 text-xs font-medium leading-4 text-[var(--color-muted)] opacity-85 transition-colors hover:border-[var(--color-border-strong)] hover:text-[var(--color-foreground)] hover:opacity-100">
                             {concept}
                           </span>
                         </li>
@@ -241,7 +241,7 @@ export function Skills() {
                     >
                       {methods.map((method) => (
                         <li key={method}>
-                          <span className="inline-flex min-h-7 items-center whitespace-nowrap rounded-md border border-[rgba(148,163,184,0.28)] bg-transparent px-2 py-0.5 text-[0.7rem] font-medium leading-4 text-[var(--color-muted)] opacity-85 transition-colors hover:border-[var(--color-border-strong)] hover:text-[var(--color-foreground)] hover:opacity-100">
+                          <span className="inline-flex min-h-7 items-center whitespace-normal rounded-md border border-[rgba(148,163,184,0.28)] bg-transparent px-2 py-0.5 text-xs font-medium leading-4 text-[var(--color-muted)] opacity-85 transition-colors hover:border-[var(--color-border-strong)] hover:text-[var(--color-foreground)] hover:opacity-100">
                             {method}
                           </span>
                         </li>

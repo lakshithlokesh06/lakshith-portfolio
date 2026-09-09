@@ -6,6 +6,7 @@ type ProjectVisualProps = {
   project: Project;
   large?: boolean;
   priority?: boolean;
+  sizes?: string;
 };
 
 function ProjectPlaceholder({ project, large }: { project: Project; large: boolean }) {
@@ -57,29 +58,28 @@ function ProjectPlaceholder({ project, large }: { project: Project; large: boole
   );
 }
 
-export function ProjectVisual({ project, large = false, priority = false }: ProjectVisualProps) {
+export function ProjectVisual({ project, large = false, priority = false, sizes }: ProjectVisualProps) {
   const image = project.image?.trim();
 
   return (
     <div
-      className={`relative overflow-hidden rounded-md border border-[var(--color-border)] bg-[rgba(8,9,11,0.35)] ${
-        large ? "min-h-[17rem] sm:min-h-[20rem] lg:min-h-full" : "min-h-[13.5rem]"
-      }`}
+      className={`project-visual relative overflow-hidden rounded-md border border-[var(--color-border)] bg-[rgba(8,9,11,0.35)] ${large ? "project-visual-large" : ""}`}
       aria-hidden={image ? undefined : true}
     >
       {image ? (
         <>
-          <div className="absolute inset-2 overflow-hidden rounded-md border border-[rgba(37,43,54,0.72)] bg-[var(--color-surface)]">
+          <div aria-hidden="true" className="preview-chrome"><i /><i /><i /><span /></div>
+          <div className="preview-image absolute overflow-hidden rounded-md border border-[rgba(37,43,54,0.72)] bg-[var(--color-surface)]">
             <Image
               src={image}
               alt={project.imageAlt ?? `${project.title} project preview`}
               fill
               priority={priority}
-              sizes={large ? "(min-width: 1024px) 46vw, 92vw" : "(min-width: 768px) 42vw, 92vw"}
-              className="object-cover object-top transition-transform duration-500 motion-safe:group-hover:scale-[1.015]"
+              sizes={sizes ?? (large ? "(min-width: 1280px) 560px, (min-width: 1024px) 46vw, 92vw" : "(min-width: 1280px) 560px, (min-width: 768px) 42vw, 92vw")}
+              className="object-contain object-top transition-transform duration-300 motion-safe:group-hover:scale-[1.015]"
             />
           </div>
-          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(8,9,11,0.02),rgba(8,9,11,0.22))]" />
+
         </>
       ) : (
         <ProjectPlaceholder project={project} large={large} />

@@ -28,9 +28,9 @@ function DetailBlock({
     <Reveal
       as="section"
       id={id}
-      className="scroll-mt-24 border-t border-[var(--color-border)] py-11 sm:py-12"
+      className="case-block scroll-mt-24 border-t border-[var(--color-border)] py-11 sm:py-12"
     >
-      <div className="grid gap-5 lg:grid-cols-[13rem_1fr] xl:grid-cols-[14rem_1fr]">
+      <div className="grid gap-5">
         <h2 className="text-sm font-medium uppercase tracking-[0.22em] text-[var(--color-subtle)]">
           {title}
         </h2>
@@ -100,7 +100,7 @@ function ScreenshotGallery({ project }: { project: Project }) {
           return (
             <figure
               key={src}
-              className={`overflow-hidden rounded-lg border border-[var(--color-border)] bg-[rgba(16,19,24,0.62)] p-2 shadow-[0_24px_80px_rgba(0,0,0,0.16)] ${
+              className={`case-screenshot overflow-hidden rounded-lg border border-[var(--color-border)] bg-[rgba(16,19,24,0.62)] p-2 shadow-[0_24px_80px_rgba(0,0,0,0.16)] ${
                 isPrimary ? "md:col-span-2" : ""
               }`}
             >
@@ -154,7 +154,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
   ];
 
   return (
-    <main>
+    <main className="case-study">
       <PageContainer className="py-10 sm:py-14 lg:py-16">
         <Link
           href="/#projects"
@@ -167,7 +167,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
         <RevealGroup
           as="header"
           amount={0.18}
-          className="mt-10 grid gap-10 lg:grid-cols-[1.03fr_0.97fr] lg:items-end"
+          className="case-hero mt-10 grid gap-10 lg:grid-cols-[1.03fr_0.97fr] lg:items-center"
         >
           <RevealItem>
             <div className="flex flex-wrap items-center gap-2">
@@ -179,7 +179,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
               </span>
             </div>
 
-            <h1 className="mt-6 max-w-4xl text-[clamp(2.45rem,7vw,5.25rem)] font-semibold leading-[0.96] tracking-tight text-balance text-[var(--color-foreground)]">
+            <h1 className="mt-6 max-w-4xl text-[clamp(2.2rem,4.5vw,4rem)] font-semibold leading-[1.06] tracking-tight text-balance text-[var(--color-foreground)]">
               {project.title}
             </h1>
             <p className="mt-6 max-w-3xl text-base leading-8 text-[var(--color-muted)] sm:text-lg">
@@ -211,7 +211,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
           </RevealItem>
         </RevealGroup>
 
-        <div className="mt-12 grid gap-10 lg:grid-cols-[11.5rem_minmax(0,1fr)] lg:items-start xl:grid-cols-[12rem_minmax(0,1fr)]">
+        <div className="case-body mt-16 grid gap-10 lg:grid-cols-[11.5rem_minmax(0,1fr)] xl:gap-16">
           <ProjectToc items={tocItems} />
 
           <div className="min-w-0">
@@ -240,7 +240,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
             <DetailBlock id="architecture" title="Technology / Architecture">
               <div className="grid gap-8 lg:grid-cols-[1fr_0.82fr]">
                 <ul
-                  className="flex flex-wrap gap-2"
+                  className="flex flex-wrap content-start gap-2"
                   aria-label="Full technology stack"
                 >
                   {project.techStack.map((tech) => (

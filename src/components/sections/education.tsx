@@ -39,7 +39,7 @@ function EducationEntry({
   return (
     <RevealItem
       as="article"
-      className="relative grid gap-4 rounded-lg border border-[var(--color-border)] bg-[rgba(8,9,11,0.24)] p-5 shadow-[0_18px_60px_rgba(0,0,0,0.12)] transition-colors hover:border-[var(--color-border-strong)] sm:grid-cols-[1fr_auto] sm:gap-8 sm:p-6"
+      className="education-entry relative grid gap-4 rounded-lg border border-[var(--color-border)] bg-[rgba(8,9,11,0.24)] p-5 shadow-[0_18px_60px_rgba(0,0,0,0.12)] transition-colors hover:border-[var(--color-border-strong)] sm:grid-cols-[1fr_auto] sm:gap-8 sm:p-6"
     >
       <div className="flex min-w-0 gap-4">
         <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-md border border-[rgba(103,232,249,0.24)] bg-[rgba(103,232,249,0.06)] text-[var(--color-accent)]">
@@ -71,7 +71,7 @@ function EducationEntry({
 export function Education() {
   return (
     <Section id="education" className="pt-0">
-      <RevealGroup amount={0.22} className="mx-auto max-w-4xl">
+      <RevealGroup amount={0.22} className="education-layout">
         <RevealItem>
           <SectionHeading
             eyebrow="Education"
@@ -80,7 +80,7 @@ export function Education() {
           />
         </RevealItem>
 
-        <div className="mt-10 grid gap-4 rounded-lg border border-[var(--color-border)] bg-[linear-gradient(180deg,rgba(21,25,34,0.76),rgba(12,14,18,0.86))] p-4 shadow-[0_28px_90px_rgba(0,0,0,0.18)] sm:p-5">
+        <div className="education-timeline relative mt-10 grid gap-6">
           {educationEntries.map((entry) => (
             <EducationEntry
               key={`${entry.degree}-${entry.status}`}

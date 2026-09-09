@@ -127,17 +127,17 @@ function WorkflowStep({
               },
             }
       }
-      className="relative grid grid-cols-[2.75rem_minmax(0,1fr)] gap-4 py-4 first:pt-0 last:pb-0"
+      className="workflow-step relative grid grid-cols-[2.75rem_minmax(0,1fr)] gap-4 py-4"
     >
       {!isLast ? (
         <span
           aria-hidden="true"
-          className="absolute left-[1.375rem] top-9 h-[calc(100%-1.25rem)] w-px bg-[linear-gradient(180deg,rgba(103,232,249,0.22),rgba(37,43,54,0.35))]"
+          className="workflow-connector absolute left-[1.375rem] top-9 h-[calc(100%-1.25rem)] w-px bg-[linear-gradient(180deg,rgba(103,232,249,0.22),rgba(37,43,54,0.35))]"
         />
       ) : null}
-      <span className="relative z-10 inline-flex size-11 items-center justify-center rounded-md border border-[rgba(103,232,249,0.24)] bg-[rgba(8,9,11,0.42)] text-[var(--color-accent)]">
+      <span className="workflow-icon relative z-10 inline-flex size-11 items-center justify-center rounded-md border border-[rgba(103,232,249,0.24)] bg-[rgba(8,9,11,0.42)] text-[var(--color-accent)]">
         <Icon aria-hidden="true" size={17} strokeWidth={1.8} />
-        <span className="sr-only">{step.number}</span>
+
       </span>
       <span className="min-w-0">
         <span className="text-xs font-semibold tracking-[0.18em] text-[var(--color-accent)]">
@@ -162,10 +162,10 @@ function HeroVisual() {
       initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
       animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
       transition={{ duration: 0.45, ease: "easeOut", delay: 0.15 }}
-      className="relative mx-auto w-full max-w-[23rem] sm:max-w-[29rem] lg:mx-0 lg:ml-auto"
+      className="workflow relative mx-auto w-full lg:mx-0 lg:ml-auto"
     >
       <div className="absolute -inset-5 rounded-full bg-[rgba(103,232,249,0.08)] blur-3xl" />
-      <div className="relative overflow-hidden rounded-lg border border-[var(--color-border)] bg-[linear-gradient(180deg,rgba(21,25,34,0.94),rgba(12,14,18,0.94))] p-5 shadow-[0_28px_90px_rgba(0,0,0,0.32)] transition-colors hover:border-[rgba(103,232,249,0.28)] sm:p-6">
+      <div className="workflow-panel relative overflow-hidden rounded-lg border border-[var(--color-border)] bg-[linear-gradient(180deg,rgba(21,25,34,0.94),rgba(12,14,18,0.94))] p-5 shadow-[0_28px_90px_rgba(0,0,0,0.32)] transition-colors hover:border-[rgba(103,232,249,0.28)] sm:p-6">
         <div className="border-b border-[var(--color-border)] pb-4">
           <p className="text-xs font-medium uppercase tracking-[0.22em] text-[var(--color-subtle)]">
             How I Work
@@ -227,9 +227,9 @@ export function Hero() {
   };
 
   return (
-    <section className="relative overflow-hidden py-16 sm:py-24 lg:min-h-[calc(100vh-4rem)] lg:py-28">
+    <section className="hero relative overflow-hidden py-16 sm:py-20 lg:py-20">
       <HeroDataNetwork />
-      <PageContainer className="relative z-10 grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
+      <PageContainer className="hero-composition relative z-10 grid items-center gap-14 lg:grid-cols-[1.2fr_0.8fr]">
         <motion.div
           variants={shouldReduceMotion ? undefined : container}
           initial={shouldReduceMotion ? false : "hidden"}
@@ -245,14 +245,14 @@ export function Hero() {
 
           <motion.h1
             variants={shouldReduceMotion ? undefined : item}
-            className="mt-5 max-w-4xl text-[clamp(3rem,8vw,6.75rem)] font-semibold leading-[0.94] tracking-tight text-balance text-[var(--color-foreground)]"
+            className="hero-title mt-5 max-w-4xl text-[clamp(3rem,8vw,6.75rem)] font-semibold leading-[0.94] tracking-tight text-balance text-[var(--color-foreground)]"
           >
             {site.name}
           </motion.h1>
 
           <motion.p
             variants={shouldReduceMotion ? undefined : item}
-            className="mt-6 text-xl font-medium tracking-tight text-[var(--color-foreground)] sm:text-2xl"
+            className="hero-positioning mt-6 text-xl font-medium tracking-tight text-[var(--color-foreground)] sm:text-2xl"
           >
             {site.title}
           </motion.p>
@@ -271,7 +271,7 @@ export function Hero() {
           >
             <Link
               href="#projects"
-              className="inline-flex h-11 items-center justify-center rounded-md bg-[var(--color-foreground)] px-5 text-sm font-semibold !text-[var(--color-background)] transition-colors hover:bg-white hover:!text-[var(--color-background)] active:!text-[var(--color-background)] focus-visible:!text-[var(--color-background)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-background)]"
+              className="primary-action inline-flex h-11 items-center justify-center rounded-md bg-[var(--color-foreground)] px-5 text-sm font-semibold !text-[var(--color-background)] transition-colors hover:bg-white hover:!text-[var(--color-background)] active:!text-[var(--color-background)] focus-visible:!text-[var(--color-background)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-background)]"
             >
               View My Work
             </Link>
@@ -291,7 +291,7 @@ export function Hero() {
 
           <motion.div
             variants={shouldReduceMotion ? undefined : item}
-            className="mt-8 flex flex-col gap-4 text-sm text-[var(--color-muted)] sm:flex-row sm:items-center"
+            className="hero-availability mt-8 flex flex-col gap-4 text-sm text-[var(--color-muted)] sm:flex-row sm:items-center"
           >
             <div className="inline-flex items-center gap-2">
               <span className="relative flex size-2.5">
