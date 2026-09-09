@@ -32,7 +32,7 @@ const contactMethods = [
 ];
 
 export function Contact() {
-  const primaryEmailHref = `mailto:${site.email}`;
+  const primaryEmailHref = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(site.email)}`;
 
   return (
     <Section id="contact" className="pt-0">
