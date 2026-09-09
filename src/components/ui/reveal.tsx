@@ -57,7 +57,7 @@ export function Reveal({
   children,
   delay = 0,
   duration = 0.6,
-  once = true,
+  once = false,
   y = 24,
   ...props
 }: RevealBaseProps) {
@@ -81,7 +81,7 @@ export function RevealGroup({
   amount = 0.18,
   as = "div",
   children,
-  once = true,
+  once = false,
   stagger = 0.08,
   ...props
 }: RevealGroupProps) {
