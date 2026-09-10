@@ -268,6 +268,23 @@ footer a[aria-label] { min-width: 44px; min-height: 44px; }
   .project-story-flagship .project-story-details { grid-column: 2; grid-row: 1; align-self: end; }
   .project-story-flagship .project-story-media { grid-column: 1 / -1; grid-row: 2; margin-top: 2.5rem; }
 }
+/* One selective edge treatment; idle appearance and focus ring stay intact. */
+.project-story-flagship .project-links > a:first-child {
+  --project-cta-edge: linear-gradient(120deg, rgba(103,232,249,.65), rgba(69,126,168,.35) 55%, rgba(103,232,249,.25));
+}
+@media (forced-colors: none) {
+  .project-story-flagship .project-links > a:first-child:focus-visible {
+    border-color: transparent;
+    background: linear-gradient(var(--color-surface), var(--color-surface)) padding-box, var(--project-cta-edge) border-box;
+  }
+}
+@media (hover: hover) and (pointer: fine) and (forced-colors: none) {
+  .project-story-flagship .project-links > a:first-child:hover {
+    border-color: transparent;
+    background: linear-gradient(var(--color-surface), var(--color-surface)) padding-box, var(--project-cta-edge) border-box;
+  }
+}
+
 @media (hover: hover) and (pointer: fine) {
   .project-story:hover { border-color: rgba(103,232,249,.48); }
   .project-story:hover .project-story-media { border-color: rgba(103,232,249,.3); box-shadow: 0 32px 60px -30px #000, inset 0 1px rgba(103,232,249,.08); }
