@@ -150,10 +150,8 @@ export function Navbar() {
 
               {site.resumeAvailable ? (
                 <Link
-                  href={site.resume}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Open resume PDF in a new tab"
+                  href="/resume"
+                  aria-label="View resume"
                   className="ml-2 inline-flex h-9 items-center gap-2 rounded-md border border-[var(--color-border)] bg-[var(--color-surface)] px-4 text-sm font-medium text-[var(--color-foreground)] transition-colors hover:border-[var(--color-border-strong)] hover:bg-[var(--color-surface-elevated)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-background)]"
                 >
                   <FileText aria-hidden="true" size={16} strokeWidth={1.8} />
@@ -233,10 +231,8 @@ export function Navbar() {
 
                 {site.resumeAvailable ? (
                   <Link
-                    href={site.resume}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Open resume PDF in a new tab"
+                    href="/resume"
+                    aria-label="View resume"
                     className="ml-auto inline-flex h-10 items-center gap-2 rounded-md border border-[var(--color-border)] bg-[var(--color-surface)] px-4 text-sm font-medium text-[var(--color-foreground)] transition-colors hover:bg-[var(--color-surface-elevated)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus)]"
                     onClick={closeMenu}
                   >

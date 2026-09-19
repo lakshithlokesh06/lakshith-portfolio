@@ -1,3 +1,6 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 
 import { Footer } from "@/components/layout/footer";
@@ -9,6 +12,10 @@ type SiteShellProps = {
 };
 
 export function SiteShell({ children }: SiteShellProps) {
+  const pathname = usePathname();
+
+  if (pathname === "/resume") return children;
+
   return (
     <div className="flex min-h-screen flex-col">
       <Navbar />

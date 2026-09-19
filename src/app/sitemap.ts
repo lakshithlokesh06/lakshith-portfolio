@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: absoluteUrl("/"),
       priority: 1,
     },
+    { url: absoluteUrl("/resume"), priority: 0.8 },
     ...projects.map((project) => ({
       url: absoluteUrl(`/projects/${project.slug}`),
       priority: project.featured ? 0.8 : 0.7,
